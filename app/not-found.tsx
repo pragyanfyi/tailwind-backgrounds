@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { motion } from "motion/react"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { ModeToggle } from "@/components/theme-toggle"
+import { motion } from "motion/react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ModeToggle } from "@/components/theme-toggle";
 
 export default function NotFound() {
   return (
@@ -42,7 +42,7 @@ export default function NotFound() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}
         >
-          The page you're looking for doesn't exist or has been moved.
+          The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </motion.p>
 
         <motion.div
@@ -50,12 +50,14 @@ export default function NotFound() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
-          <Button asChild className="backdrop-blur-xl bg-primary/80 hover:bg-primary/90">
+          <Button
+            asChild
+            className="backdrop-blur-xl bg-primary/80 hover:bg-primary/90"
+          >
             <Link href="/">Return Home</Link>
           </Button>
         </motion.div>
       </motion.div>
     </main>
-  )
+  );
 }
-
