@@ -3,13 +3,13 @@
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ModeToggle } from "@/components/theme-toggle";
+import { MorphingThemeToggle } from "@/components/theme/theme-toggle";
 
 export default function NotFound() {
   return (
     <main className="flex min-h-screen h-screen flex-col items-center justify-center p-4 relative overflow-hidden">
-      <div className="absolute top-4 right-4 z-10">
-        <ModeToggle />
+      <div className="absolute top-16 right-16 z-10">
+        <MorphingThemeToggle />
       </div>
 
       <motion.div
