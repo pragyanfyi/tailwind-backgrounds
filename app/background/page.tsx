@@ -7,15 +7,36 @@ import {
   HomeIcon,
   Palette,
   Shuffle,
+  Check,
 } from "lucide-react";
+import { useState } from "react";
 import { Dock, DockIcon, DockItem, DockLabel } from "@/components/ui/dock";
 import { MorphingThemeToggle } from "@/components/theme/theme-toggle";
 import { useRouter } from "next/navigation";
 import { useBackground } from "@/components/background-provider";
+import handleCopyCode from "@/components/handle-code-copy";
 
 export default function Background() {
   const router = useRouter();
-  const { randomizeBackground } = useBackground();
+  const {
+    spots,
+    grid,
+    dots,
+    addSpot,
+    removeSpot,
+    updateSpot,
+    updateGrid,
+    updateDots,
+    randomizeBackground,
+  } = useBackground();
+
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    handleCopyCode(spots, grid, dots);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000); // 2sec
+  };
 
   const data = [
     {
@@ -23,9 +44,7 @@ export default function Background() {
       icon: (
         <HomeIcon className="h-full w-full text-neutral-600 dark:text-neutral-300" />
       ),
-      function: () => {
-        router.push("/");
-      },
+      function: () => router.push("/"),
     },
     {
       title: "Colors",
@@ -53,16 +72,19 @@ export default function Background() {
       icon: (
         <Shuffle className="h-full w-full text-neutral-600 dark:text-neutral-300" />
       ),
-      function: randomizeBackground,
+      function: () => randomizeBackground(),
     },
     {
       title: "Copy Code",
-      icon: (
+      icon: copied ? (
+        <Check className="h-full w-full text-green-500 dark:text-green-400" />
+      ) : (
         <Copy className="h-full w-full text-neutral-600 dark:text-neutral-300" />
       ),
-      function: () => {},
+      function: handleCopy,
     },
   ];
+
   return (
     <main className="flex min-h-screen h-screen flex-col items-center justify-center p-4 relative overflow-hidden">
       <div className="absolute top-16 right-16 z-10">
