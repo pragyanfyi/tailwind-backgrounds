@@ -8,6 +8,7 @@ import {
   useTransform,
   type SpringOptions,
   AnimatePresence,
+  useAnimation,
 } from "motion/react";
 import {
   Children,
@@ -38,6 +39,7 @@ export type DockProps = {
 export type DockItemProps = {
   className?: string;
   children: React.ReactNode;
+  onClick?: () => void;
 };
 
 export type DockItemChildProps = {
@@ -117,7 +119,7 @@ function Dock({
           mouseX.set(Infinity);
         }}
         className={cn(
-          "mx-auto flex w-fit gap-4 rounded-2xl bg-gray-50 px-4 dark:bg-neutral-900",
+          "mx-auto flex w-fit gap-4 rounded-2xl px-4 bg-gray-500/20 dark:bg-white/20",
           className
         )}
         style={{ height: panelHeight }}
@@ -132,8 +134,10 @@ function Dock({
   );
 }
 
-function DockItem({ children, className }: DockItemProps) {
+function DockItem({ children, className, onClick }: DockItemProps) {
   const ref = useRef<HTMLDivElement>(null);
+
+  const controls = useAnimation();
 
   const { distance, magnification, mouseX, spring } = useDock();
 
@@ -152,10 +156,23 @@ function DockItem({ children, className }: DockItemProps) {
 
   const width = useSpring(widthTransform, spring);
 
+  const handleClick = () => {
+    // Trigger bounce
+    controls.start({
+      scale: [1, 1.15, 0.95, 1.05, 1],
+      transition: { duration: 0.4, times: [0, 0.2, 0.4, 0.6, 1] },
+    });
+
+    // Call the original click handler
+    onClick?.();
+  };
+
   return (
     <motion.div
       ref={ref}
       style={{ width }}
+      onClick={handleClick}
+      animate={controls}
       onHoverStart={() => isHovered.set(1)}
       onHoverEnd={() => isHovered.set(0)}
       onFocus={() => isHovered.set(1)}
