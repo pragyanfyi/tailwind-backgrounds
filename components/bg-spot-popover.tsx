@@ -29,7 +29,6 @@ export function BgSpotPopover() {
   const [posY, setPosY] = useState(spot?.position.y || 50);
   const [size, setSize] = useState(parseInt(spot?.size || "500px"));
 
-  // Update local state when active spot changes
   useEffect(() => {
     if (spots[activeSpot]) {
       const currentSpot = spots[activeSpot];
@@ -43,7 +42,6 @@ export function BgSpotPopover() {
     }
   }, [spots, activeSpot]);
 
-  // Handle color change from picker
   const handleColorChange = (newColor: string) => {
     setColor(newColor);
     setHexInput(newColor);

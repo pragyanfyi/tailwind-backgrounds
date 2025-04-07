@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Copy,
   DotSquare,
@@ -16,6 +17,7 @@ import { useBackground } from "@/components/background-provider";
 import handleCopyCode from "@/components/handle-code-copy";
 import { BgSpotPopover } from "@/components/bg-spot-popover";
 import { BgGridPopover } from "@/components/bg-grid-popover";
+import { BgDotsPopover } from "@/components/bg-dots-popover";
 
 export default function Background() {
   const router = useRouter();
@@ -54,9 +56,7 @@ export default function Background() {
     },
     {
       title: "Dots",
-      icon: (
-        <DotSquare className="h-full w-full text-neutral-600 dark:text-neutral-300" />
-      ),
+      icon: <BgDotsPopover />,
       function: () => {},
     },
     {
