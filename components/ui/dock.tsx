@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import { motion, useAnimation, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+// import {
+//   Tooltip,
+//   TooltipContent,
+//   TooltipProvider,
+//   TooltipTrigger,
+// } from "@/components/ui/tooltip";
 import {
   Popover,
   PopoverContent,
@@ -71,8 +71,7 @@ function DockItem({
     if (onClick) onClick();
   };
 
-  // Use title as tooltip if tooltip is not specified
-  const displayTooltip = tooltip || title;
+  // const displayTooltip = tooltip || title;
 
   const item = (
     <motion.div

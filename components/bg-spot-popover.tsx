@@ -20,10 +20,8 @@ export function BgSpotPopover() {
   const [activeSpot, setActiveSpot] = useState(0);
   const [hexInput, setHexInput] = useState(spots[0]?.color || "#8b5cf6");
 
-  // Current active spot settings
   const spot = spots[activeSpot] || spots[0];
 
-  // Local state for controlled inputs
   const [color, setColor] = useState(spot?.color || "#8b5cf6");
   const [opacity, setOpacity] = useState(spot?.opacity || 0.5);
   const [blur, setBlur] = useState(parseInt(spot?.blur || "80px"));
@@ -52,47 +50,40 @@ export function BgSpotPopover() {
     updateSpot(activeSpot, { color: newColor });
   };
 
-  // Handle color change from hex input
   const handleHexChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setHexInput(value);
 
-    // Only update if it's a valid hex color
     if (/^#[0-9A-Fa-f]{6}$/.test(value)) {
       setColor(value);
       updateSpot(activeSpot, { color: value });
     }
   };
 
-  // Handle opacity change
   const handleOpacityChange = (value: number[]) => {
     const newOpacity = value[0];
     setOpacity(newOpacity);
     updateSpot(activeSpot, { opacity: newOpacity });
   };
 
-  // Handle blur change
   const handleBlurChange = (value: number[]) => {
     const newBlur = value[0];
     setBlur(newBlur);
     updateSpot(activeSpot, { blur: `${newBlur}px` });
   };
 
-  // Handle size change
   const handleSizeChange = (value: number[]) => {
     const newSize = value[0];
     setSize(newSize);
     updateSpot(activeSpot, { size: `${newSize}px` });
   };
 
-  // Handle position X change
   const handlePosXChange = (value: number[]) => {
     const newX = value[0];
     setPosX(newX);
     updateSpot(activeSpot, { position: { x: newX, y: posY } });
   };
 
-  // Handle position Y change
   const handlePosYChange = (value: number[]) => {
     const newY = value[0];
     setPosY(newY);
@@ -141,7 +132,6 @@ export function BgSpotPopover() {
         </div>
 
         <div className="space-y-4">
-          {/* Color Picker and Hex Input */}
           <div>
             <Label className="text-sm font-medium mb-2 block">Color</Label>
             <div className="flex items-center space-x-2">

@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { useBackground } from "@/components/background-provider";
 import handleCopyCode from "@/components/handle-code-copy";
 import { BgSpotPopover } from "@/components/bg-spot-popover";
+import { BgGridPopover } from "@/components/bg-grid-popover";
 
 export default function Background() {
   const router = useRouter();
@@ -48,8 +49,8 @@ export default function Background() {
     },
     {
       title: "Colors",
-      icon: <BgSpotPopover index={activeSpotIndex} />,
-      function: () => {}, // This is now handled by the BgSpotPopover
+      icon: <BgSpotPopover />,
+      function: () => {},
     },
     {
       title: "Dots",
@@ -60,9 +61,7 @@ export default function Background() {
     },
     {
       title: "Grid",
-      icon: (
-        <Grid className="h-full w-full text-neutral-600 dark:text-neutral-300" />
-      ),
+      icon: <BgGridPopover />,
       function: () => {},
     },
     {
