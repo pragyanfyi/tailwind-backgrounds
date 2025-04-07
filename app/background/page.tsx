@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Copy,
   DotSquare,
@@ -10,11 +9,12 @@ import {
   Check,
 } from "lucide-react";
 import { useState } from "react";
-import { Dock, DockIcon, DockItem, DockLabel } from "@/components/ui/dock";
+import { Dock, DockIcon, DockItem } from "@/components/ui/dock";
 import { MorphingThemeToggle } from "@/components/theme/theme-toggle";
 import { useRouter } from "next/navigation";
 import { useBackground } from "@/components/background-provider";
 import handleCopyCode from "@/components/handle-code-copy";
+import { BgSpotPopover } from "@/components/bg-spot-popover";
 
 export default function Background() {
   const router = useRouter();
@@ -29,8 +29,8 @@ export default function Background() {
     updateDots,
     randomizeBackground,
   } = useBackground();
-
   const [copied, setCopied] = useState(false);
+  const [activeSpotIndex, setActiveSpotIndex] = useState(0);
 
   const handleCopy = () => {
     handleCopyCode(spots, grid, dots);
@@ -48,10 +48,8 @@ export default function Background() {
     },
     {
       title: "Colors",
-      icon: (
-        <Palette className="h-full w-full text-neutral-600 dark:text-neutral-300" />
-      ),
-      function: () => {},
+      icon: <BgSpotPopover index={activeSpotIndex} />,
+      function: () => {}, // This is now handled by the BgSpotPopover
     },
     {
       title: "Dots",
@@ -95,10 +93,10 @@ export default function Background() {
           {data.map((item, idx) => (
             <DockItem
               key={idx}
+              title={item.title} // Pass the title for tooltip and animation control
               className="aspect-square hover:cursor-pointer rounded-full bg-gray-200 dark:bg-neutral-800"
               onClick={item.function}
             >
-              <DockLabel>{item.title}</DockLabel>
               <DockIcon>{item.icon}</DockIcon>
             </DockItem>
           ))}
