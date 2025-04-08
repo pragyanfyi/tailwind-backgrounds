@@ -1,45 +1,18 @@
 "use client";
-
-import {
-  Copy,
-  DotSquare,
-  Grid,
-  HomeIcon,
-  Palette,
-  Shuffle,
-  Check,
-} from "lucide-react";
+import { DotSquare, Grid, HomeIcon, Palette, Shuffle } from "lucide-react";
 import { useState } from "react";
 import { Dock, DockIcon, DockItem } from "@/components/ui/dock";
 import { MorphingThemeToggle } from "@/components/theme/theme-toggle";
 import { useRouter } from "next/navigation";
 import { useBackground } from "@/components/background-provider";
-import handleCopyCode from "@/components/handle-code-copy";
 import { BgSpotPopover } from "@/components/bg-spot-popover";
 import { BgGridPopover } from "@/components/bg-grid-popover";
 import { BgDotsPopover } from "@/components/bg-dots-popover";
+import { CopyCodePopover } from "@/components/copy-code-popover";
 
 export default function Background() {
   const router = useRouter();
-  const {
-    spots,
-    grid,
-    dots,
-    addSpot,
-    removeSpot,
-    updateSpot,
-    updateGrid,
-    updateDots,
-    randomizeBackground,
-  } = useBackground();
-  const [copied, setCopied] = useState(false);
-  const [activeSpotIndex, setActiveSpotIndex] = useState(0);
-
-  const handleCopy = () => {
-    handleCopyCode(spots, grid, dots);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000); // 2sec
-  };
+  const { spots, grid, dots, randomizeBackground } = useBackground();
 
   const data = [
     {
@@ -73,12 +46,8 @@ export default function Background() {
     },
     {
       title: "Copy Code",
-      icon: copied ? (
-        <Check className="h-full w-full text-green-500 dark:text-green-400" />
-      ) : (
-        <Copy className="h-full w-full text-neutral-600 dark:text-neutral-300" />
-      ),
-      function: handleCopy,
+      icon: <CopyCodePopover spots={spots} grid={grid} dots={dots} />,
+      function: () => {}, // Handling is now inside the popover component
     },
   ];
 
