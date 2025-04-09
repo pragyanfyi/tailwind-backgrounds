@@ -1,6 +1,5 @@
 "use client";
 import { DotSquare, Grid, HomeIcon, Palette, Shuffle } from "lucide-react";
-import { useState } from "react";
 import { Dock, DockIcon, DockItem } from "@/components/ui/dock";
 import { MorphingThemeToggle } from "@/components/theme/theme-toggle";
 import { useRouter } from "next/navigation";
@@ -13,7 +12,6 @@ import { CopyCodePopover } from "@/components/copy-code-popover";
 export default function Background() {
   const router = useRouter();
   const { spots, grid, dots, randomizeBackground } = useBackground();
-
   const data = [
     {
       title: "Home",
@@ -21,6 +19,8 @@ export default function Background() {
         <HomeIcon className="h-full w-full text-neutral-600 dark:text-neutral-300" />
       ),
       function: () => router.push("/"),
+      // Only show on md screens and up
+      className: "hidden md:flex",
     },
     {
       title: "Colors",
@@ -47,7 +47,7 @@ export default function Background() {
     {
       title: "Copy Code",
       icon: <CopyCodePopover spots={spots} grid={grid} dots={dots} />,
-      function: () => {}, // Handling is now inside the popover component
+      function: () => {},
     },
   ];
 
@@ -61,8 +61,10 @@ export default function Background() {
           {data.map((item, idx) => (
             <DockItem
               key={idx}
-              title={item.title} // Pass the title for tooltip and animation control
-              className="aspect-square hover:cursor-pointer rounded-full bg-gray-200 dark:bg-neutral-800"
+              title={item.title}
+              className={`aspect-square hover:cursor-pointer rounded-full bg-gray-200 dark:bg-neutral-800 ${
+                item.className || ""
+              }`}
               onClick={item.function}
             >
               <DockIcon>{item.icon}</DockIcon>

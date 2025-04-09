@@ -24,10 +24,10 @@ export function BgSpotPopover() {
 
   const [color, setColor] = useState(spot?.color || "#8b5cf6");
   const [opacity, setOpacity] = useState(spot?.opacity || 0.5);
-  const [blur, setBlur] = useState(parseInt(spot?.blur || "80px"));
+  const [blur, setBlur] = useState(parseInt(spot?.blur || "80"));
   const [posX, setPosX] = useState(spot?.position.x || 50);
   const [posY, setPosY] = useState(spot?.position.y || 50);
-  const [size, setSize] = useState(parseInt(spot?.size || "500px"));
+  const [size, setSize] = useState(parseInt(spot?.size || "500"));
 
   useEffect(() => {
     if (spots[activeSpot]) {
@@ -35,10 +35,12 @@ export function BgSpotPopover() {
       setColor(currentSpot.color);
       setHexInput(currentSpot.color);
       setOpacity(currentSpot.opacity);
-      setBlur(parseInt(currentSpot.blur));
+      // Fix blur value parsing - remove 'px' and parse as integer
+      setBlur(parseInt(currentSpot.blur.replace("px", "")));
       setPosX(currentSpot.position.x);
       setPosY(currentSpot.position.y);
-      setSize(parseInt(currentSpot.size));
+      // Fix size value parsing - remove 'px' and parse as integer
+      setSize(parseInt(currentSpot.size.replace("px", "")));
     }
   }, [spots, activeSpot]);
 
@@ -67,12 +69,14 @@ export function BgSpotPopover() {
   const handleBlurChange = (value: number[]) => {
     const newBlur = value[0];
     setBlur(newBlur);
+    // Ensure we apply the value as a string with 'px' unit
     updateSpot(activeSpot, { blur: `${newBlur}px` });
   };
 
   const handleSizeChange = (value: number[]) => {
     const newSize = value[0];
     setSize(newSize);
+    // Ensure we apply the value as a string with 'px' unit
     updateSpot(activeSpot, { size: `${newSize}px` });
   };
 
@@ -186,7 +190,7 @@ export function BgSpotPopover() {
             />
           </div>
 
-          {/* Blur Slider */}
+          {/* Blur Slider - Increased max value for more blur */}
           <div>
             <div className="flex justify-between mb-1">
               <Label className="text-sm font-medium">Blur</Label>
@@ -195,8 +199,8 @@ export function BgSpotPopover() {
             <Slider
               value={[blur]}
               min={0}
-              max={200}
-              step={1}
+              max={300}
+              step={5}
               onValueChange={handleBlurChange}
             />
           </div>

@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/popover";
 import { toast } from "sonner";
 import Image from "next/image";
+import { Label } from "./ui/label";
 
 interface CopyCodePopoverProps {
   spots: SpotSettings[];
@@ -237,7 +238,7 @@ export function CopyCodePopover({ spots, grid, dots }: CopyCodePopoverProps) {
                 className="object-contain"
               />
             </div>
-            <span className="text-sm">JSX</span>
+            <Label className="text-xs font-bold">JSX</Label>
           </button>
           <div className="h-px bg-gray-200 dark:bg-gray-700 w-full" />
           <button
@@ -253,7 +254,7 @@ export function CopyCodePopover({ spots, grid, dots }: CopyCodePopoverProps) {
                 className="object-contain"
               />
             </div>
-            <span className="text-sm">HTML</span>
+            <Label className="text-xs font-bold">HTML</Label>
           </button>
         </div>
       </PopoverContent>
