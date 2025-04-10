@@ -4,13 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
-import { useBackground } from "@/components/background-provider";
 import { Shuffle, Palette } from "lucide-react";
 import { MorphingThemeToggle } from "@/components/theme/theme-toggle";
+import { useRandomizeBackground } from "@/hooks/use-randomize-background";
 
 export default function Home() {
   const router = useRouter();
-  const { randomizeBackground } = useBackground();
+  const randomizeBackground = useRandomizeBackground();
   const [isExiting, setIsExiting] = useState(false);
 
   const handleGetStarted = () => {

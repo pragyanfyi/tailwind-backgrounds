@@ -85,7 +85,7 @@ export function CopyCodePopover({ spots, grid, dots }: CopyCodePopoverProps) {
   // Create HTML code for background elements
   const generateHTMLCode = () => {
     const spotsHTML = spots
-      .map((spot, index) => {
+      .map((spot) => {
         return `<div 
   style="
     position: absolute; 

@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 
 export function MorphingThemeToggle() {
   const uniqueId = useId();
-  const { setTheme, theme } = useTheme();
+  const { setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
 
   const closePopover = () => {

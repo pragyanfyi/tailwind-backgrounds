@@ -1,5 +1,5 @@
 "use client";
-import { DotSquare, Grid, HomeIcon, Palette, Shuffle } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 import { Dock, DockIcon, DockItem } from "@/components/ui/dock";
 import { MorphingThemeToggle } from "@/components/theme/theme-toggle";
 import { useRouter } from "next/navigation";
@@ -8,10 +8,12 @@ import { BgSpotPopover } from "@/components/bg-spot-popover";
 import { BgGridPopover } from "@/components/bg-grid-popover";
 import { BgDotsPopover } from "@/components/bg-dots-popover";
 import { CopyCodePopover } from "@/components/copy-code-popover";
+import { BgRandomize } from "@/components/bg-randomize";
 
 export default function Background() {
   const router = useRouter();
-  const { spots, grid, dots, randomizeBackground } = useBackground();
+  const { spots, grid, dots } = useBackground();
+
   const data = [
     {
       title: "Home",
@@ -39,10 +41,8 @@ export default function Background() {
     },
     {
       title: "Randomize",
-      icon: (
-        <Shuffle className="h-full w-full text-neutral-600 dark:text-neutral-300" />
-      ),
-      function: () => randomizeBackground(),
+      icon: <BgRandomize />,
+      function: () => {},
     },
     {
       title: "Copy Code",
@@ -52,7 +52,7 @@ export default function Background() {
   ];
 
   return (
-    <main className="flex min-h-screen h-screen flex-col items-center justify-center p-4 relative overflow-hidden">
+    <main className="flex h-screen flex-col items-center justify-center p-4 relative overflow-hidden">
       <div className="absolute top-16 right-16 z-10">
         <MorphingThemeToggle />
       </div>

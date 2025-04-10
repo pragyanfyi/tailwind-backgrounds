@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { motion, useAnimation, AnimatePresence } from "motion/react";
+import { motion, useAnimation } from "motion/react";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 // import {
@@ -48,7 +48,6 @@ function Dock({ children, className }: DockProps) {
 function DockItem({
   children,
   className,
-  tooltip,
   popoverContent,
   onClick,
   title,

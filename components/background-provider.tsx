@@ -1,9 +1,9 @@
 "use client";
 
 import type React from "react";
-
 import { createContext, useContext, useState, useEffect } from "react";
 import { motion } from "motion/react";
+import generateRandomColor from "@/lib/generate-random-color";
 
 type BackgroundContextType = {
   spots: SpotSettings[];
@@ -14,7 +14,9 @@ type BackgroundContextType = {
   updateSpot: (index: number, settings: Partial<SpotSettings>) => void;
   updateGrid: (settings: Partial<GridSettings>) => void;
   updateDots: (settings: Partial<DotsSettings>) => void;
-  randomizeBackground: () => void;
+  setSpots: React.Dispatch<React.SetStateAction<SpotSettings[]>>;
+  setGrid: React.Dispatch<React.SetStateAction<GridSettings>>;
+  setDots: React.Dispatch<React.SetStateAction<DotsSettings>>;
 };
 
 const defaultSpot: SpotSettings = {
@@ -53,15 +55,6 @@ export function useBackground() {
   }
   return context;
 }
-
-const generateRandomColor = () => {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-};
 
 export function BackgroundProvider({
   children,
@@ -124,48 +117,6 @@ export function BackgroundProvider({
     });
   };
 
-  const randomizeBackground = () => {
-    // Randomize spots with smoother transitions
-    const newSpots = spots.map((spot) => ({
-      ...spot,
-      color: generateRandomColor(),
-      opacity: Math.random() * 0.5 + 0.3,
-      position: {
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-      },
-      blur: `${Math.floor(Math.random() * 100) + 40}px`,
-    }));
-
-    // Apply with animation
-    setSpots((prevSpots) =>
-      prevSpots.map((spot, i) => ({
-        ...spot,
-        // Apply immediate color change but keep other properties for animation
-        color: newSpots[i].color,
-      }))
-    );
-
-    // Then update the rest with a slight delay for smoother transition
-    setTimeout(() => {
-      setSpots(newSpots);
-    }, 50);
-
-    // Randomize grid
-    setGrid({
-      ...grid,
-      color: `${generateRandomColor()}12`,
-      opacity: Math.random() * 0.8 + 0.2, // Higher range for opacity
-    });
-
-    // Randomize dots
-    setDots({
-      ...dots,
-      color: generateRandomColor(),
-      opacity: Math.random() * 0.5 + 0.3,
-    });
-  };
-
   return (
     <BackgroundContext.Provider
       value={{
@@ -177,7 +128,9 @@ export function BackgroundProvider({
         updateSpot,
         updateGrid,
         updateDots,
-        randomizeBackground,
+        setSpots,
+        setGrid,
+        setDots,
       }}
     >
       <div className="fixed inset-0 h-screen w-screen overflow-hidden">
