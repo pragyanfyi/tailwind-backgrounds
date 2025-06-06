@@ -12,12 +12,12 @@ export function BgRandomize() {
     const newSpots = spots.map((spot) => ({
       ...spot,
       color: generateRandomColor(),
-      opacity: Math.random() * 0.5 + 0.3,
+      opacity: Math.random() * 0.3 + 0.2,
       position: {
         x: Math.random() * 100,
         y: Math.random() * 100,
       },
-      blur: `${Math.floor(Math.random() * 100) + 40}px`,
+      blur: `${Math.floor(Math.random() * 100) + 50}px`,
     }));
 
     setSpots(newSpots);

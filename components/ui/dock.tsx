@@ -3,12 +3,6 @@ import React, { useState } from "react";
 import { motion, useAnimation } from "motion/react";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
-// import {
-//   Tooltip,
-//   TooltipContent,
-//   TooltipProvider,
-//   TooltipTrigger,
-// } from "@/components/ui/tooltip";
 import {
   Popover,
   PopoverContent,
@@ -70,8 +64,6 @@ function DockItem({
     if (onClick) onClick();
   };
 
-  // const displayTooltip = tooltip || title;
-
   const item = (
     <motion.div
       onClick={handleClick}
@@ -93,37 +85,11 @@ function DockItem({
   if (popoverContent) {
     return (
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          {/* {displayTooltip ? (
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>{item}</TooltipTrigger>
-                <TooltipContent>
-                  <p>{displayTooltip}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          ) : (
-            item
-          )} */}
-        </PopoverTrigger>
+        <PopoverTrigger asChild></PopoverTrigger>
         <PopoverContent className="w-64">{popoverContent}</PopoverContent>
       </Popover>
     );
   }
-
-  // if (displayTooltip) {
-  //   return (
-  //     <TooltipProvider>
-  //       <Tooltip>
-  //         <TooltipTrigger asChild>{item}</TooltipTrigger>
-  //         <TooltipContent>
-  //           <p>{displayTooltip}</p>
-  //         </TooltipContent>
-  //       </Tooltip>
-  //     </TooltipProvider>
-  //   );
-  // }
 
   return item;
 }

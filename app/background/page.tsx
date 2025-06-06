@@ -1,4 +1,5 @@
 "use client";
+
 import { HomeIcon } from "lucide-react";
 import { Dock, DockIcon, DockItem } from "@/components/ui/dock";
 import { MorphingThemeToggle } from "@/components/theme/theme-toggle";
