@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { BackgroundProvider } from "@/components/background-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { siteConfig } from "@/lib/config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,7 +20,10 @@ const appUrl = process.env.NEXT_PUBLIC_APP_URL!;
 const portfolioUrl = process.env.NEXT_PUBLIC_PORTFOLIO_URL!;
 
 export const metadata: Metadata = {
-  title: "Tailwind Backgrounds",
+  title: {
+    default: siteConfig.name,
+    template: `%s - ${siteConfig.name}`,
+  },
   description:
     "Create beautiful backgrounds with spots, grids, and dots for your web projects. Free and open-source.",
   keywords: [
@@ -37,21 +41,21 @@ export const metadata: Metadata = {
     title: "Tailwind Backgrounds",
     description: "Build beautiful Tailwind-friendly backgrounds instantly.",
     url: appUrl,
-    siteName: "Tailwind Backgrounds",
+    siteName: siteConfig.name,
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Tailwind Backgrounds preview",
+        alt: siteConfig.name,
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tailwind Backgrounds",
-    description: "Free tool to create Tailwind-friendly backgrounds.",
+    title: siteConfig.name,
+    description: siteConfig.description,
     creator: "@pragyan8804",
     images: ["/og-image.png"],
   },

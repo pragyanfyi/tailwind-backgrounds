@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
-import { Shuffle, Palette } from "lucide-react";
+import { Shuffle, Palette, Github } from "lucide-react";
 import { MorphingThemeToggle } from "@/components/theme/theme-toggle";
 import { useRandomizeBackground } from "@/hooks/use-randomize-background";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -22,7 +22,18 @@ export default function Home() {
   };
 
   return (
-    <main className="flex h-screen flex-col items-center justify-center p-4 relative overflow-hidden">
+    <main className="flex h-[100dvh] flex-col items-center justify-center p-4 relative overflow-hidden">
+      <div className="absolute top-16 right-40 z-10">
+        <a
+          href="https://github.com/pragyan8804"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button size="icon" variant="outline">
+            <Github />
+          </Button>
+        </a>
+      </div>
       <div className="absolute top-16 right-16 z-10">
         <MorphingThemeToggle />
       </div>
