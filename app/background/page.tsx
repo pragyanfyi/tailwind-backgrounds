@@ -53,7 +53,7 @@ export default function Background() {
   ];
 
   return (
-    <main className="flex h-screen flex-col items-center justify-center p-4 relative overflow-hidden">
+    <main className="flex h-[100dvh] flex-col items-center justify-center p-4 relative overflow-hidden">
       <div className="absolute top-16 right-16 z-10">
         <MorphingThemeToggle />
       </div>

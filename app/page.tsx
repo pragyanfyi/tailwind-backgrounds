@@ -21,19 +21,12 @@ export default function Home() {
     }, 500);
   };
 
+  const githubLink = () => {
+    window.open("https://github.com/pragyan8804", "_blank");
+  };
+
   return (
     <main className="flex h-[100dvh] flex-col items-center justify-center p-4 relative overflow-hidden">
-      <div className="absolute top-16 right-40 z-10">
-        <a
-          href="https://github.com/pragyan8804"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button size="icon" variant="outline">
-            <Github />
-          </Button>
-        </a>
-      </div>
       <div className="absolute top-16 right-16 z-10">
         <MorphingThemeToggle />
       </div>
@@ -64,7 +57,7 @@ export default function Home() {
         </motion.p>
 
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 mt-4"
+          className="flex flex-col items-center sm:flex-row gap-4 mt-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
@@ -86,6 +79,14 @@ export default function Home() {
           >
             <Shuffle className="mr-2 h-5 w-5" />
             Randomize
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            className="backdrop-blur-xl border bg-background/40 border-background/10 hover:bg-background/50"
+            onClick={githubLink}
+          >
+            <Github />
           </Button>
         </motion.div>
       </motion.div>
