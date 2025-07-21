@@ -9,13 +9,13 @@ Create beautiful backgrounds with spots, grids, and dots for your web projects. 
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/pragyan8804/tailwind-backgrounds
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd tailwind-backgrounds
 ```
 
 Install dependencies and start the development server
