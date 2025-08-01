@@ -22,7 +22,7 @@ export default function Home() {
   };
 
   const githubLink = () => {
-    window.open("https://github.com/pragyan8804", "_blank");
+    window.open("https://github.com/pragyanfyi/tailwind-backgrounds", "_blank");
   };
 
   return (
@@ -91,7 +91,6 @@ export default function Home() {
         </motion.div>
       </motion.div>
 
-      {/* Footer pinned to bottom */}
       <motion.div
         className="absolute bottom-4 left-0 right-0 px-6 flex justify-between text-sm text-muted-foreground z-10"
         initial={{ opacity: 0, y: 20 }}
@@ -107,13 +106,13 @@ export default function Home() {
           <p>Made by </p>
           <Avatar>
             <a
-              href="https://pragyan8804.vercel.app/"
+              href="https://pragyan.fyi/"
               target="_blank"
               rel="noopener noreferrer"
             >
               <AvatarImage
-                src="https://github.com/pragyan8804.png"
-                alt="@pragyan8804"
+                src="https://github.com/pragyanfyi.png"
+                alt="@pragyanfyi"
               />
               <AvatarFallback>PP</AvatarFallback>
             </a>
@@ -139,7 +138,7 @@ export default function Home() {
             </Avatar>
             <Avatar>
               <a
-                href="https://shadcn.com/"
+                href="https://ui.shadcn.com/"
                 target="_blank"
                 rel="noopener noreferrer"
               >

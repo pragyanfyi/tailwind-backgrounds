@@ -9,7 +9,7 @@ Create beautiful backgrounds with spots, grids, and dots for your web projects. 
 Clone the project
 
 ```bash
-  git clone https://github.com/pragyan8804/tailwind-backgrounds
+  git clone https://github.com/pragyanfyi/tailwind-backgrounds
 ```
 
 Go to the project directory

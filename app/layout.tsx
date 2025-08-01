@@ -16,9 +16,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const appUrl = process.env.NEXT_PUBLIC_APP_URL!;
-const portfolioUrl = process.env.NEXT_PUBLIC_PORTFOLIO_URL!;
-
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -34,13 +31,13 @@ export const metadata: Metadata = {
     "web design tool",
     "open source",
   ],
-  authors: [{ name: "Pragyan Pandey", url: portfolioUrl }],
+  authors: [{ name: "Pragyan Pandey", url: "https://pragyan.fyi" }],
   creator: "Pragyan Pandey",
-  metadataBase: new URL(appUrl),
+  metadataBase: new URL("https://bg.pragyan.fyi"),
   openGraph: {
     title: "Tailwind Backgrounds",
     description: "Build beautiful Tailwind-friendly backgrounds instantly.",
-    url: appUrl,
+    url: "https://bg.pragyan.fyi",
     siteName: siteConfig.name,
     images: [
       {
@@ -56,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    creator: "@pragyan8804",
+    creator: "@pragyanfyi",
     images: ["/og-image.png"],
   },
 };
